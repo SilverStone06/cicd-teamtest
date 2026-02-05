@@ -54,6 +54,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_FASTAPI }}
           IMAGE_TAG: ${{ github.sha }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           aws ssm send-command \
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
@@ -72,7 +76,12 @@ jobs:
                 "sudo docker rm fastapi-server || true",
 
                 "# 4. 80번 포트로 실행 (ALB로부터의 트래픽을 수신)",
-                "sudo docker run -d --name fastapi-server -p 8000:8000 '"$ECR_REGISTRY"'/'"$ECR_REPOSITORY"':'"$IMAGE_TAG"'",
+                "sudo docker run -d --name fastapi-server -p 8000:8000 \
+                  -e DB_HOST='"$DB_HOST"' \
+                  -e DB_PORT='"$DB_PORT"' \
+                  -e DB_USER='"$DB_USER"' \
+                  -e DB_PASSWORD='"$DB_PASSWORD"' \
+                  '"$ECR_REGISTRY"'/'"$ECR_REPOSITORY"':'"$IMAGE_TAG"'",
                 "# 5. 오래된 이미지 정리",
                 "sudo docker image prune -f"
               ]

@@ -27,11 +27,11 @@ def _can_connect_mysql() -> bool:
 
     try:
         connect_kwargs = {
-            host=host,
-            user=user,
-            password=password,
-            port=port,
-            connect_timeout=3,
+            "host": host,
+            "user": user,
+            "password": password,
+            "port": port,
+            "connect_timeout": 3,
         }
         if db:
             connect_kwargs["database"] = db
