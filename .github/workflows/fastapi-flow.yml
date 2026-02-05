@@ -1,4 +1,4 @@
-name: Nginx Deployment Pipeline (Private EC2 via SSM & ECR)
+name: fastapi Deployment Pipeline (Private EC2 via SSM & ECR)
 
 'on':
   push:
