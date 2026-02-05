@@ -60,7 +60,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           aws ssm send-command \
-            --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
+            --targets "Key=tag:${{ secrets.ASG_TAG_KEY }},Values=${{ secrets.EC2_INSTANCE_TAG }}" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploying FastAPI from ECR via SSM" \
             --parameters '{
