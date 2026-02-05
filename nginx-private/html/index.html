@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>song page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>song page</h1>
+            <p class="subtitle">Welcome to My Web Space</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>About</h2>
+                <p>테스트 웹 페이지에 오신 것을 환영합니다.</p>
+            </div>
+            
+            <div class="card">
+                <h2>FastAPI Integration</h2>
+                <p>아래 버튼을 클릭하여 FastAPI 백엔드 API로 이동하세요.</p>
+                <button class="api-button" onclick="window.location.href='/api/'">
+                    <span>FastAPI로 이동</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; 2026 송은석. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
