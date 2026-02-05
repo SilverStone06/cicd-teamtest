@@ -13,7 +13,7 @@ app = FastAPI()
 # 2. 기본 경로(Root Path) 설정
 @app.get("/")
 def read_root():
-    return {"Hello": "World", "status": "Success"}
+    return {"status": "ok / song" if _can_connect_mysql() else "fail / song"}
 
 def _can_connect_mysql() -> bool:
     host = os.getenv("DB_HOST")
